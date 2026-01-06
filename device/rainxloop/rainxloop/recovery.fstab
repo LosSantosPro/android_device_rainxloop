@@ -1,0 +1,21 @@
+# Dynamic partitions
+system         /system         erofs   ro    wait,logical,first_stage_mount
+vendor         /vendor         erofs   ro    wait,logical,first_stage_mount
+product        /product        erofs   ro    wait,logical,first_stage_mount
+system_ext     /system_ext     erofs   ro    wait,logical,first_stage_mount
+
+# DLKM logical partitions
+system_dlkm    /system_dlkm    erofs   ro    wait,logical,first_stage_mount
+vendor_dlkm    /vendor_dlkm    erofs   ro    wait,logical,first_stage_mount
+odm_dlkm       /odm_dlkm       erofs   ro    wait,logical,first_stage_mount
+
+# Data + metadata
+userdata       /data           f2fs    rw    wait,check,quota,formattable
+metadata       /metadata       f2fs    rw    wait,check,formattable
+
+# MTK vendor partitions
+persist        /persist        ext4    rw    wait,check,formattable
+nvdata         /nvdata         ext4    rw    wait,check,formattable
+nvcfg          /nvcfg          ext4    rw    wait,check,formattable
+protect_f      /protect_f      ext4    rw    wait,check,formattable
+protect_s      /protect_s      ext4    rw    wait,check,formattable
