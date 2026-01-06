@@ -9,6 +9,3 @@ TARGET_RECOVERY_FSTAB := device/rainxloop/rainxloop/recovery.fstab
 
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
-
-# Basic "omni" style inheritance is commonly used by recovery builds
-$(call inherit-product, vendor/omni/config/common.mk)
