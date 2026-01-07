@@ -38,6 +38,10 @@ TARGET_PREBUILT_KERNEL := device/rainxloop/rainxloop/rainxloop/prebuilt/Image.gz
 BOARD_USES_INIT_BOOT_IMAGE := true
 BOARD_USES_VENDOR_BOOTIMAGE := true
 
+# Put recovery ramdisk into vendor_boot
+BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
+BOARD_INCLUDE_RECOVERY_RAMDISK_IN_VENDOR_BOOT := true
+
 # Filesystems present
 TARGET_USERIMAGES_USE_F2FS := true
 TARGET_USERIMAGES_USE_EXT4 := true
