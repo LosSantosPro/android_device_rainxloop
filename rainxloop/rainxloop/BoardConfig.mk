@@ -47,7 +47,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 TARGET_USERIMAGES_USE_EXT4 := true
 
 # Recovery fstab
-TARGET_RECOVERY_FSTAB := device/rainxloop/rainxloop/recovery.fstab
+TARGET_RECOVERY_FSTAB := device/rainxloop/rainxloop/rainxloop/recovery.fstab
 
 # Recovery storage behavior
 BOARD_HAS_NO_REAL_SDCARD := true
