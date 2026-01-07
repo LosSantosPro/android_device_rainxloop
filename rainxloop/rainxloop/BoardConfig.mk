@@ -26,8 +26,11 @@ BOARD_INIT_BOOT_IMAGE_PARTITION_SIZE := 8388608    # 0x800000
 
 # Boot related parameters
 BOARD_BOOT_HEADER_VERSION := 4
+BOARD_MKBOOTIMG_ARGS += --header_version 4
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 BOARD_KERNEL_PAGESIZE := 4096
+BOARD_USES_INIT_BOOT_IMAGE := true
+BOARD_USES_VENDOR_BOOTIMAGE := true
 TARGET_PREBUILT_KERNEL := device/rainxloop/rainxloop/rainxloop/prebuilt/Image.gz
 
 # Filesystems present
