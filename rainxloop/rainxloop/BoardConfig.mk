@@ -28,7 +28,7 @@ BOARD_INIT_BOOT_IMAGE_PARTITION_SIZE := 8388608    # 0x800000
 BOARD_BOOT_HEADER_VERSION := 4
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 BOARD_KERNEL_PAGESIZE := 4096
-TARGET_PREBUILT_KERNEL := device/rainxloop/rainxloop/prebuilt/Image.gz
+TARGET_PREBUILT_KERNEL := device/rainxloop/rainxloop/rainxloop/prebuilt/Image.gz
 
 # Filesystems present
 TARGET_USERIMAGES_USE_F2FS := true
