@@ -23,9 +23,6 @@ BOARD_KERNEL_PAGESIZE := 4096
 TARGET_USERIMAGES_USE_F2FS := true
 TARGET_USERIMAGES_USE_EXT4 := true
 
-# Dynamic partitions
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
-
 # Recovery fstab
 TARGET_RECOVERY_FSTAB := device/rainxloop/rainxloop/recovery.fstab
 
