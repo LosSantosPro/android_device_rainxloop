@@ -10,6 +10,14 @@ TARGET_BOARD_PLATFORM := mt6877
 
 # A/B
 AB_OTA_UPDATER := true
+AB_OTA_PARTITIONS := \
+    boot \
+    init_boot \
+    vendor_boot \
+    dtbo \
+    vbmeta \
+    vbmeta_system \
+    vbmeta_vendor
 
 # Partition sizes (from fastboot getvar all)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864         # 0x4000000
@@ -40,9 +48,9 @@ OF_MAINTAINER := rainxloop
 OF_USE_MAGISKBOOT := 1
 
 # Recovery UI
+TW_MAX_BRIGHTNESS := 255
 TARGET_SCREEN_WIDTH := 1080
 TARGET_SCREEN_HEIGHT := 1920
-TW_MAX_BRIGHTNESS := 255
 
 # Misc
 BOARD_SUPPRESS_SECURE_ERASE := true
