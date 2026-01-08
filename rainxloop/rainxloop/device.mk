@@ -1,16 +1,11 @@
-# Minimal device makefile for OrangeFox/TWRP-style recovery
+PRODUCT_NAME := fox_rainxloop
+PRODUCT_DEVICE := rainxloop
+PRODUCT_BRAND := generic
+PRODUCT_MODEL := rainxloop
+PRODUCT_MANUFACTURER := generic
 
-# Dynamic partitions (Android 10+)
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
+# Pull in device config
+$(call inherit-product, device/rainxloop/rainxloop/device.mk)
 
-# fstab location
-TARGET_RECOVERY_FSTAB := device/rainxloop/rainxloop/recovery.fstab
-
-# Treat /data/media as internal storage
-RECOVERY_SDCARD_ON_DATA := true
-
-PRODUCT_COPY_FILES += \
-    device/rainxloop/rainxloop/recovery.fstab:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/recovery.fstab
-
-PRODUCT_COPY_FILES += \
-    device/rainxloop/rainxloop/recovery/root/sbin/.gitkeep:$(TARGET_COPY_OUT_RECOVERY)/root/sbin/.gitkeep
+# Common recovery config
+$(call inherit-product, vendor/omni/config/common.mk)
