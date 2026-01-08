@@ -1,10 +1,11 @@
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# Treat /data/media as internal storage
-RECOVERY_SDCARD_ON_DATA := true
-
+# Make sure recovery ramdisk folders exist
 PRODUCT_COPY_FILES += \
-    device/rainxloop/rainxloop/rainxloop/recovery/root/sbin/.gitkeep:$(TARGET_COPY_OUT_RECOVERY)/root/sbin/.gitkeep \
-    device/rainxloop/rainxloop/rainxloop/recovery/root/system/etc/.gitkeep:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/.gitkeep \
-    device/rainxloop/rainxloop/rainxloop/recovery.fstab:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/recovery.fstab
+    device/rainxloop/rainxloop/recovery/root/sbin/.gitkeep:recovery/root/sbin/.gitkeep \
+    device/rainxloop/rainxloop/recovery/root/system/etc/.gitkeep:recovery/root/system/etc/.gitkeep \
+    device/rainxloop/rainxloop/recovery.fstab:recovery/root/system/etc/recovery.fstab
+
+# Storage behavior
+RECOVERY_SDCARD_ON_DATA := true
