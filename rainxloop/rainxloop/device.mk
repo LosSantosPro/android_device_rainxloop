@@ -1,11 +1,10 @@
-PRODUCT_NAME := fox_rainxloop
-PRODUCT_DEVICE := rainxloop
-PRODUCT_BRAND := generic
-PRODUCT_MODEL := rainxloop
-PRODUCT_MANUFACTURER := generic
+# Dynamic partitions
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# Pull in device config
-$(call inherit-product, device/rainxloop/rainxloop/device.mk)
+# Treat /data/media as internal storage
+RECOVERY_SDCARD_ON_DATA := true
 
-# Common recovery config
-$(call inherit-product, vendor/omni/config/common.mk)
+PRODUCT_COPY_FILES += \
+    device/rainxloop/rainxloop/rainxloop/recovery/root/sbin/.gitkeep:$(TARGET_COPY_OUT_RECOVERY)/root/sbin/.gitkeep \
+    device/rainxloop/rainxloop/rainxloop/recovery/root/system/etc/.gitkeep:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/.gitkeep \
+    device/rainxloop/rainxloop/rainxloop/recovery.fstab:$(TARGET_COPY_OUT_RECOVERY)/root/system/etc/recovery.fstab

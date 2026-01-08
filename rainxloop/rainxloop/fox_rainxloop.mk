@@ -4,8 +4,8 @@ PRODUCT_BRAND := generic
 PRODUCT_MODEL := rainxloop
 PRODUCT_MANUFACTURER := generic
 
-# Use recovery.fstab from this tree
-TARGET_RECOVERY_FSTAB := device/rainxloop/rainxloop/recovery.fstab
+# Pull in our device config (creates recovery/root dirs + copies fstab into ramdisk)
+$(call inherit-product, device/rainxloop/rainxloop/rainxloop/device.mk)
 
-# Dynamic partitions
-PRODUCT_USE_DYNAMIC_PARTITIONS := true
+# Common recovery config
+$(call inherit-product, vendor/omni/config/common.mk)
