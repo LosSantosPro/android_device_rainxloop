@@ -38,6 +38,9 @@ TARGET_PREBUILT_KERNEL := device/rainxloop/rainxloop/rainxloop/prebuilt/Image.gz
 BOARD_USES_INIT_BOOT_IMAGE := true
 BOARD_USES_VENDOR_BOOTIMAGE := true
 
+# Some build systems expect a staging root dir even for vendorboot flows
+TW_USE_LEGACY_RECOVERY_RAMDISK := true
+
 # Put recovery ramdisk into vendor_boot
 BOARD_MOVE_RECOVERY_RESOURCES_TO_VENDOR_BOOT := true
 BOARD_INCLUDE_RECOVERY_RAMDISK_IN_VENDOR_BOOT := true
