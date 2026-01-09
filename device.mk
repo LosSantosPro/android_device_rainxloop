@@ -1,11 +1,16 @@
+# device/rainxloop/rainxloop/device.mk
+
+DEVICE_PATH := device/rainxloop/rainxloop
+
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# Make sure recovery ramdisk folders exist
+# Android 15 device (API 35) - important for defaults (crypto, props, etc.)
+PRODUCT_SHIPPING_API_LEVEL := 35
+
+# Recovery fstab (goes into recovery ramdisk)
 PRODUCT_COPY_FILES += \
-    device/rainxloop/rainxloop/recovery/root/sbin/.gitkeep:recovery/root/sbin/.gitkeep \
-    device/rainxloop/rainxloop/recovery/root/system/etc/.gitkeep:recovery/root/system/etc/.gitkeep \
-    device/rainxloop/rainxloop/recovery.fstab:recovery/root/system/etc/recovery.fstab
+    $(DEVICE_PATH)/recovery.fstab:recovery/root/system/etc/recovery.fstab
 
 # Storage behavior
 RECOVERY_SDCARD_ON_DATA := true
