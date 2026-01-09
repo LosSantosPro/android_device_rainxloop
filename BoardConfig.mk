@@ -118,9 +118,6 @@ BOARD_SUPPRESS_SECURE_ERASE := true
 TARGET_USES_LOGD := true
 TWRP_INCLUDE_LOGCAT := true
 
-# Modules in recovery
-TW_LOAD_VENDOR_BOOT_MODULES := true
-
 # fastbootd
 TW_INCLUDE_FASTBOOTD := true
 
