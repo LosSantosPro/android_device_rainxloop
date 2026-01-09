@@ -1,5 +1,5 @@
 # Device Path
-DEVICE_PATH := device/rainxloop/rainxloop
+DEVICE_PATH := device/rainxloop
 
 # Minimal-tree allowances
 ALLOW_MISSING_DEPENDENCIES := true
