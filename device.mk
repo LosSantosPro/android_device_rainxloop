@@ -1,4 +1,4 @@
-DEVICE_PATH := device/rainxloop/rainxloop
+DEVICE_PATH := device/rainxloop
 
 # Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
