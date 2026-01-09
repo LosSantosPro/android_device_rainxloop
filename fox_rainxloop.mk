@@ -5,4 +5,4 @@ PRODUCT_MODEL := rainxloop
 PRODUCT_MANUFACTURER := generic
 
 # Pull in our device config (fstab copy etc.)
-$(call inherit-product, device/rainxloop/rainxloop/device.mk)
+$(call inherit-product, device/rainxloop/device.mk)
