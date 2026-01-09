@@ -1,0 +1,65 @@
+# init.recovery.mt6877.rc (OrangeFox/TWRP recovery)
+
+on init
+    # Make sure mountpoints exist
+    mkdir /vendor_dlkm 0755 root root
+    mkdir /odm_dlkm 0755 root root
+    mkdir /system_dlkm 0755 root root
+
+    # (Optional) nicer block layout for scripts
+    symlink /dev/block/platform/bootdevice /dev/block/bootdevice
+
+on fs
+    install_keyring
+
+#
+# Mount vendor_dlkm and load touch modules
+# post-fs-data is late enough that /dev/block/mapper should exist.
+#
+on post-fs-data
+    exec u:r:recovery:s0 root root -- /system/bin/sh -c "\
+        echo '[recovery] post-fs-data: vendor_dlkm/touch start' > /dev/kmsg; \
+        mkdir -p /vendor_dlkm; \
+        umount /vendor_dlkm 2>/dev/null; \
+        DEV=''; \
+        \
+        # Prefer mapper name (A/B) \
+        if [ -e /dev/block/mapper/vendor_dlkm_a ]; then DEV=/dev/block/mapper/vendor_dlkm_a; fi; \
+        if [ -z \"$$DEV\" ] && [ -e /dev/block/mapper/vendor_dlkm ]; then DEV=/dev/block/mapper/vendor_dlkm; fi; \
+        \
+        # Fallback: scan dm-* by dm/name \
+        if [ -z \"$$DEV\" ]; then \
+          for d in /dev/block/dm-*; do \
+            bn=$$(basename \"$$d\"); \
+            name=$$(cat /sys/block/$$bn/dm/name 2>/dev/null); \
+            if [ \"$$name\" = 'vendor_dlkm_a' ] || [ \"$$name\" = 'vendor_dlkm' ]; then DEV=\"$$d\"; break; fi; \
+          done; \
+        fi; \
+        \
+        if [ -n \"$$DEV\" ]; then \
+          mount -t erofs -o ro \"$$DEV\" /vendor_dlkm && \
+            echo '[recovery] vendor_dlkm mounted' > /dev/kmsg || \
+            echo '[recovery] vendor_dlkm mount FAILED' > /dev/kmsg; \
+        else \
+          echo '[recovery] vendor_dlkm block device not found' > /dev/kmsg; \
+        fi; \
+        \
+        MODDIR=/vendor_dlkm/lib/modules; \
+        if [ -d \"$$MODDIR\" ]; then \
+          echo \"[recovery] modules dir: $$MODDIR\" > /dev/kmsg; \
+          ls -la \"$$MODDIR\" | head -n 50 > /dev/kmsg; \
+        fi; \
+        \
+        # Load modules if present (touch_boost may fail, that's OK) \
+        if [ -f \"$$MODDIR/focaltech_touch_i2c_v42.ko\" ] || [ -f \"$$MODDIR/sitronix_touch.ko\" ]; then \
+          echo '[recovery] loading touch modules' > /dev/kmsg; \
+          if [ -f \"$$MODDIR/touch_boost.ko\" ]; then insmod \"$$MODDIR/touch_boost.ko\" 2>/dev/kmsg || true; fi; \
+          if [ -f \"$$MODDIR/mtk_ioctl_touch_boost.ko\" ]; then insmod \"$$MODDIR/mtk_ioctl_touch_boost.ko\" 2>/dev/kmsg || true; fi; \
+          if [ -f \"$$MODDIR/focaltech_touch_i2c_v42.ko\" ]; then insmod \"$$MODDIR/focaltech_touch_i2c_v42.ko\" 2>/dev/kmsg || true; fi; \
+          if [ -f \"$$MODDIR/sitronix_touch.ko\" ]; then insmod \"$$MODDIR/sitronix_touch.ko\" 2>/dev/kmsg || true; fi; \
+          echo '[recovery] touch insmod done' > /dev/kmsg; \
+        else \
+          echo '[recovery] no known touch ko found in vendor_dlkm' > /dev/kmsg; \
+          ls -la /vendor_dlkm /vendor_dlkm/lib /vendor_dlkm/lib/modules 2>/dev/kmsg; \
+        fi \
+    "
