@@ -124,9 +124,6 @@ TW_LOAD_VENDOR_BOOT_MODULES := true
 # fastbootd
 TW_INCLUDE_FASTBOOTD := true
 
-# APEX (disable early during bring-up; can enable later if needed)
-TW_EXCLUDE_APEX := true
-
 # UI
 TARGET_SCREEN_WIDTH := 1080
 TARGET_SCREEN_HEIGHT := 1920
