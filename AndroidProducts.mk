@@ -3,4 +3,7 @@ PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/fox_rainxloop.mk
 
 COMMON_LUNCH_CHOICES := \
-    twrp_rainxloop-eng
+    twrp_rainxloop-eng \
+    twrp_rainxloop-userdebug \
+    fox_rainxloop-eng \
+    fox_rainxloop-userdebug
