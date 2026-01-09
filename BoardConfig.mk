@@ -78,7 +78,12 @@ BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
 # VNDK
 BOARD_VNDK_VERSION := current
 
-# Dynamic partitions (you don't need the full super group math just to boot recovery)
+# Dynamic partitions
+BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR := vendor
 TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
